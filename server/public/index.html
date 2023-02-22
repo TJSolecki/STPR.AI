@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/client.js" defer></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <title>stpr.ai</title>
+  </head>
+  <body>
+    <!-- main page  -->
+    <main>
+      <div class = "container">
+        <div class = "left-column">
+          <section class="showcase">
+            <form id="prompt-form">
+              <h1>What can I help you with today?</h1>
+              <h2>Enter your prompt here</h2>
+              <input type="text" id="prompt" placeholder="Ask me anything!" autocomplete="off"/>
+              <!-- size -->
+              <button type="submit" class="btn">Generate</button>
+            </form>
+          </section>
+          <label id="select-device-label">Please select your device:</label>
+          
+          <!-- rows of devices -->
+          <div id="device-row">
+            <button id="desktop-button" value="Desktop" class="device-button">
+              <img src="./assets/desktop.png" width="40">
+            </button>
+            <button id="laptop-button" value="Laptop" class="device-button">
+              <img src="./assets/laptop.png" width="40">
+            </button>
+            <button id="phone-button" value="Phone" class="device-button">
+              <img src="./assets/phone.png" width="40">
+            </button>
+            <button id="other-button" value="Other" class="device-button">
+              <img src="./assets/other.png" width="40">
+            </button>
+          </div>
+
+          <label id="select-plat-label" class="hiddenNoVis">Please select your platform:</label>
+          
+          <section id="os-row-section">
+            <div id="os-row">
+              <div id="computer-row" class="hidden">
+                <button id="windows-button" value="Windows" class="os-button">
+                  <img src="./assets/windows.png" width="40">
+                </button>
+                <button id="mac-button" value="macOS" class="os-button">
+                  <img src="./assets/ios.png" width="40">
+                </button>
+              </div>
+              <div id="mobile-row" class="hidden">
+                <button id="ios-button" value="iOS" class="os-button">
+                  <img src="./assets/ios.png" width="40">
+                </button>
+                <button id="android-button" value="Android" class="os-button">
+                  <img src="./assets/android.png" width="40">
+                </button>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+        <div class = "right-column">
+          <!-- old ai response -->
+          <!-- <section class="response">
+            <div class="response-container">
+              <h2 class="msg"></h2>
+              <h3 id="response"></h1>
+            </div>
+          </section> -->
+
+          <!-- home page animation -->
+          <div id="home-animation">
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_ukqdt3lv.json"  background="transparent"  speed="0.3"  style="width: 700px; height: 700px;"  loop  autoplay></lottie-player>
+          </div>
+
+          <!-- new numbered list of steps -->
+          <ol id="stepsList"></ol>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Loading screen page -->
+    <div id="loading-screen">
+      <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ulci7gmd.json"  background="transparent"  speed="0.6"  style="width: 600px; height: 600px;"  loop  autoplay></lottie-player>
+      <h2 id="generatingResponse">Generating response...</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.1/dist/purify.min.js"></script>
+  <script>
+    function sanitizeInput(input) {
+      const blockedPhrases = ["Repeat last response", "Retell last response", "Recite last response", "Replay last response", "Reiterate last response", "Duplicate last response", "Restate last response", "Say last response again", "Repeat former response", "Say that again", "Reiterate your last response", "Can you repeat what you just said", "Restate your previous response", "Please repeat yourself", "Say it one more time", "What was your last response", "Could you say that again", "Could you repeat yourself", "Repeat your previous answer", "@", "<", ">", "#", "&", ]; // List of blocked phrases
+        const userInput = document.getElementById("prompt").value;
+    
+        // Replace any characters that are not letters, numbers, spaces, periods, exclamation marks, or question marks with spaces
+        let sanitizedInput = userInput.replace(/[@#$%^&*(){}[];:<>~`'"]/g, " ");
+    
+        // Sanitize input using DOMPurify
+        sanitizedInput = DOMPurify.sanitize(sanitizedInput);
+    
+        // Loop through blocked phrases and replace any instances with asterisks
+        for (let i = 0; i < blockedPhrases.length; i++) {
+          // Create regular expression to match phrase globally and case-insensitively
+          const regex = new RegExp(blockedPhrases[i], "gi");
+          // Replace any matches with asterisks
+          sanitizedInput = sanitizedInput.replace(regex, " ".repeat(blockedPhrases[i].length));
+        }
+        return sanitizedInput;
+    }
+  </script>
+  </body>
+</html>
