@@ -1,5 +1,5 @@
 # Demo
-![A video that demonstates the website's frontend and functionalities](https://www.youtube.com/watch?v=wO5RKHkiCX8&embeds)
+![A gif that demonstates the website's frontend and functionalities](STPRaiDEMO.gif)
 
 # Inspiration
 As computer science students, we are frequently approached by our older family members seeking help with their technology-related issues. Despite our initial assumption that Google could easily solve their problems, we realized that the search engine's results can be overwhelming and confusing for those less comfortable with new technology. The incessant ads, links to irrelevant sites, and excessive noise made it increasingly difficult for them to find the answers they needed. Our project was born out of this realization, with the goal of creating an accessible and user-friendly solution to help individuals struggling with new technology quickly and easily find solutions to their queries.
